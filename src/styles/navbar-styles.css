@@ -1,0 +1,62 @@
+:root {
+  /* Gaming color palette - black, red, purple */
+  --color-background: rgb(13, 13, 13); /* Near black */
+  --color-foreground: rgb(250, 250, 250); /* White */
+  --color-card: rgb(38, 38, 38); /* Dark gray */
+  --color-card-foreground: rgb(250, 250, 250); /* White on cards */
+  --color-primary: rgb(184, 36, 36); /* Gaming red */
+  --color-primary-foreground: rgb(250, 250, 250); /* White on red */
+  --color-secondary: rgb(118, 79, 190); /* Gaming purple */
+  --color-secondary-foreground: rgb(250, 250, 250); /* White on purple */
+  --color-muted: rgb(64, 64, 64); /* Muted dark gray */
+  --color-muted-foreground: rgb(179, 179, 179); /* Light gray text */
+  --color-border: rgb(64, 64, 64); /* Dark borders */
+  --color-input: rgb(38, 38, 38); /* Dark input background */
+
+}
+
+
+body{
+    background-color: rgb(5, 5, 5);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+.navbar .nav-link:hover {
+  color: #8B0000 !important; 
+}
+.offcanvas {
+  background-color: rgba(0, 0, 0, 0.85) !important; /* negro semitransparente */
+  color: white !important;
+  backdrop-filter: blur(6px); /* opcional, efecto vidrio */
+}
+.offcanvas .btn-close {
+  filter: invert(1); /* convierte la X en blanca */
+}
+.logo-icon{
+  background-color: #dd1f1f; 
+  color: white;          
+  font-weight: 500;        
+  padding: 5px 8px;      
+  border-radius: 8px;     
+  margin-right: 10px;     
+  font-size: 0.9rem;        
+  display: inline-block;   
+  text-align: center;      
+}
+
+.icon{
+    margin-left: -50px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.1s ease-in;
+}
+.icon:hover{
+
+    background-color: var(--color-secondary);
+
+}
+
+
+

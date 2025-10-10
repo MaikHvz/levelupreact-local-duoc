@@ -1,0 +1,9 @@
+.card-body{
+    background-color: #131415
+}
+.filter-button{
+    background-color:  #dc3545;
+}
+.filter-button:hover{
+    background-color:  #7c1f29;
+}

@@ -1,0 +1,289 @@
+
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+  position: relative;
+  padding: 1rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.effect-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: pulse 8s infinite alternate;
+}
+
+.effect-1 {
+  width: 300px;
+  height: 300px;
+  background: #ff0055;
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.effect-2 {
+  width: 400px;
+  height: 400px;
+  background: #00aaff;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.effect-3 {
+  width: 200px;
+  height: 200px;
+  background: #9900ff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 4s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Tarjeta de login */
+.login-card {
+  background: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff0055, #00aaff, #9900ff, #ff0055);
+  z-index: -1;
+  border-radius: 16px;
+  animation: border-animation 4s linear infinite;
+  background-size: 400%;
+}
+
+@keyframes border-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card-header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon-container {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  background: linear-gradient(45deg, #ff0055, #9900ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+}
+
+.icon-container i {
+  font-size: 2rem;
+  color: white;
+}
+
+.card-title {
+  color: #fff;
+  font-weight: 700;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.card-description {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+}
+
+/* Tabs personalizados */
+.custom-tabs {
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+}
+
+.custom-tabs .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-tabs .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-tabs .nav-link.active {
+  color: #fff;
+  background: linear-gradient(45deg, #ff0055, #9900ff);
+  box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+}
+
+/* Formularios */
+.form-control {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 85, 0.25);
+  color: #fff;
+}
+
+.form-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.input-group-text {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(45deg, #ff0055, #9900ff);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #ff0066, #aa00ff);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 0, 85, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(255, 0, 85, 0.4);
+}
+
+.btn-outline-secondary {
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Alertas y mensajes */
+.alert {
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.alert-danger {
+  background: rgba(255, 0, 85, 0.2);
+  color: #ff4081;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-pane {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .login-card {
+    margin: 1rem;
+  }
+  
+  .card-header {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .icon-container {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Login Gamer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/login-styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/navbar-styles.css">
+    <script src="scripts/navbar.js" defer></script>
+</head>
+<body>
+         <div class="navbar" id="navbar"></div>
+    <div class="login-container">
+        <div class="bg-effects">
+            <div class="effect-circle effect-1"></div>
+            <div class="effect-circle effect-2"></div>
+            <div class="effect-circle effect-3"></div>
+        </div>
+
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card login-card">
+                <div class="card-header text-center">
+                    <div class="icon-container mb-3">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h2 class="card-title">Bienvenido Gamer</h2>
+                    <p class="card-description">Accede a tu cuenta o crea una nueva para continuar</p>
+                </div>
+
+                <div class="card-body">
+
+                    <ul class="nav nav-pills nav-justified custom-tabs mb-4" id="loginTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login" type="button" role="tab">
+                                Iniciar Sesión
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab" data-bs-toggle="pill" data-bs-target="#register" type="button" role="tab">
+                                Registrarse
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="loginTabsContent">
+
+                        <div class="tab-pane fade show active" id="login" role="tabpanel">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" class="form-control custom-input" id="email" placeholder="tu@email.com">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control custom-input" id="password" placeholder="••••••••">
+
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="remember">
+                                        <label class="form-check-label" for="remember">Recordarme</label>
+                                    </div>
+                                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                                </div>
+
+                                <button type="submit" class="btn btn-login w-100 mb-3">Iniciar Sesión</button>
+                            </form>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="register" role="tabpanel">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Nombre de Usuario</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control custom-input" id="username" placeholder="tu usuario gamer">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="register-email" class="form-label">Correo Electrónico</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" class="form-control custom-input" id="register-email" placeholder="tu@email.com">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="register-password" class="form-label">Contraseña</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control custom-input" id="register-password" placeholder="••••••••">
+                                        
+                                            
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control custom-input" id="confirm-password" placeholder="••••••••">
+                                      
+                                            
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="terms">
+                                    <label class="form-check-label" for="terms">
+                                        Acepto los <a href="#" class="terms-link">términos y condiciones</a>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-register w-100 mb-3">Crear Cuenta</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p class="support-text">
+                            ¿Necesitas ayuda? <a href="#" class="support-link">Contacta soporte</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+  document.getElementById("navbar").outerHTML = localStorage.getItem("navbar");
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/login-scripts.js"></script>
+</body>
+</html>
