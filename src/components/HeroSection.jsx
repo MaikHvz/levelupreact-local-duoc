@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/HeroSection.css"; // Aquí van tus estilos del hero
+import { Link } from "react-router-dom";
 
 
 export default function HeroSection() {
@@ -46,7 +47,8 @@ export default function HeroSection() {
 
             <div className="hero-buttons">
               <button className="btn btn-primary hero-button fw-semibold">
-                Explorar Productos
+                <Link to="/Productos">Explorar Productos</Link>
+                
               </button>
             </div>
           </div>
