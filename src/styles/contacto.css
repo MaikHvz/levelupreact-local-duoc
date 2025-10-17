@@ -1,0 +1,151 @@
+/* ==================================== */
+/* 1. CONTENEDOR PRINCIPAL (Fondo)      */
+/* ==================================== */
+.contact-page-container {
+    /* Fondo Oscuro con Degradado */
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+    position: relative;
+    padding: 1rem;
+    display: flex; /* Para centrar el formulario si es necesario */
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==================================== */
+/* 2. EFECTOS VISUALES FLOTANTES        */
+/* ==================================== */
+.bg-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite hacer clic a través del efecto */
+    z-index: 1; /* Asegura que esté detrás del formulario */
+}
+
+.effect-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Aumentamos el blur para un efecto más suave */
+    opacity: 0.4;
+    animation: pulse 10s infinite alternate;
+}
+
+/* Definición de los círculos con colores temáticos */
+.effect-1 {
+    width: 350px;
+    height: 350px;
+    background: #ff0055; /* Magenta/Rosa */
+    top: 5%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.effect-2 {
+    width: 450px;
+    height: 450px;
+    background: #00aaff; /* Azul claro */
+    bottom: 5%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.effect-3 {
+    width: 250px;
+    height: 250px;
+    background: #9900ff; /* Violeta */
+    top: 40%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    animation-delay: 6s;
+}
+
+/* Animación de pulsación (tomada del original) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* ==================================== */
+/* 3. ESTILO DEL FORMULARIO (Contenedor)*/
+/* ==================================== */
+.contact-form-card {
+    /* Estilo de la "Tarjeta" Oscura (simulando login-card) */
+    background: rgba(15, 15, 15, 0.9); /* Fondo semi-transparente oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil */
+    border-radius: 12px;
+    backdrop-filter: blur(5px); /* Efecto de desenfoque del fondo */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Asegura que esté por encima de los efectos */
+    color: #fff; /* Color de texto base claro */
+    margin: 1rem; /* Margen para asegurar espacio en pantallas pequeñas */
+}
+
+.contact-form-card h1 {
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo de campos de formulario (ajustando las clases de Bootstrap) */
+.contact-form-card .form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.75rem 1rem;
+}
+
+.contact-form-card .form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ff0055; /* Resalte de enfoque en el color de acento */
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 85, 0.25);
+    color: #fff;
+}
+
+.contact-form-card .form-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+/* Estilo de botón (usando el degradado de acento) */
+.contact-form-card .btn-primary {
+    background: linear-gradient(45deg, #ff0055, #9900ff);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+}
+
+.contact-form-card .btn-primary:hover {
+    background: linear-gradient(45deg, #ff0066, #aa00ff);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 0, 85, 0.6);
+}
+
+/* Estilos de feedback de validación (texto de error) */
+.contact-form-card .invalid-feedback {
+    color: #ff4081; /* Un rosa brillante para el error */
+    font-weight: 500;
+}
+
+/* Responsive básico para evitar que el contenedor principal ocupe todo el ancho */
+@media (min-width: 576px) {
+    .contact-page-container {
+        padding: 3rem;
+    }
+} 

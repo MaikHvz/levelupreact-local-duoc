@@ -6,6 +6,7 @@ import Login from './components/Login';
 import CartPage from './pages/CartPage';
 import AuthProvider from './contexts/AuthContext';
 import CartProvider from './contexts/CartContext';
+import  ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/productos" element={<ProductosPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/carrito" element={<CartPage />} />
+            <Route path="/contacto" element={<ContactPage />} /> 
           </Routes>
         </Router>
       </CartProvider>
