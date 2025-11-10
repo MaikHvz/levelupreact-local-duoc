@@ -6,7 +6,9 @@ import Login from './components/Login';
 import CartPage from './pages/CartPage';
 import AuthProvider from './contexts/AuthContext';
 import CartProvider from './contexts/CartContext';
-import  ContactPage from './pages/ContactPage';
+import ContactPage from './pages/ContactPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -19,6 +21,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/carrito" element={<CartPage />} />
             <Route path="/contacto" element={<ContactPage />} /> 
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminPage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Router>
       </CartProvider>

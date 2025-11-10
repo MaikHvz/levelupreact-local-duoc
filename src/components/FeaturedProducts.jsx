@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "../styles/herosection.css";
 import { Link } from "react-router-dom";
-import productsData from "../data/productsData";
+import { getProducts } from "../services/productsService";
 
 const FeaturedProducts = () => {
-  const featuredProducts = productsData.filter((product) => product.featured);
+  const featuredProducts = useMemo(() => {
+    return getProducts().filter((product) => product.featured);
+  }, []);
 
   return (
     <section className="d-flex container-fluid flex-column justify-content-center text-center mt-5">

@@ -13,6 +13,25 @@ export const AuthProvider = ({ children }) => {
 
   // Cargar usuario desde localStorage al iniciar
   useEffect(() => {
+    // Seed de usuario admin por defecto si no existe
+    const defaultAdmin = {
+      name: 'Admin',
+      email: 'admin@levelupgaming.cl',
+      password: 'admin123',
+      role: 'admin',
+    };
+
+    try {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const hasAdmin = users.some(u => u.email === defaultAdmin.email);
+      if (!hasAdmin) {
+        localStorage.setItem('users', JSON.stringify([defaultAdmin, ...users]));
+      }
+    } catch (_) {
+      // Si hay error en parseo, inicializamos con admin
+      localStorage.setItem('users', JSON.stringify([defaultAdmin]));
+    }
+
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -38,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     }
     
     // Agregar nuevo usuario
-    users.push(userData);
+    users.push({ ...userData, role: 'user' });
     localStorage.setItem('users', JSON.stringify(users));
     
     // Iniciar sesión con el nuevo usuario
@@ -71,7 +90,8 @@ export const AuthProvider = ({ children }) => {
     register,
     logout,
     verifyCredentials,
-    isAuthenticated: !!user
+    isAuthenticated: !!user,
+    isAdmin: !!user && user.role === 'admin'
   };
 
   return (

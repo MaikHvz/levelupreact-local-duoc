@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import productsData from '../data/productsData';
+import { getProducts } from '../services/productsService';
 import ProductCard from './ProductCard';
 import '../styles/productos.css';
 
 const Productos = ({ priceFilter }) => {
-  const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    let filtered = productsData;
+    let all = getProducts();
+    let filtered = all;
     
     if (priceFilter) {
       if (priceFilter.min !== null) {
