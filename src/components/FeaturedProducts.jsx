@@ -1,11 +1,21 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/herosection.css";
 import { Link } from "react-router-dom";
 import { getProducts } from "../services/productsService";
 
 const FeaturedProducts = () => {
-  const featuredProducts = useMemo(() => {
-    return getProducts().filter((product) => product.featured);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const all = await getProducts();
+        setFeaturedProducts(all.filter(p => p.featured));
+      } catch (_) {
+        setFeaturedProducts([]);
+      }
+    };
+    load();
   }, []);
 
   return (

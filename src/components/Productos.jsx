@@ -4,24 +4,33 @@ import ProductCard from './ProductCard';
 import '../styles/productos.css';
 
 const Productos = ({ priceFilter }) => {
+  const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    let all = getProducts();
-    let filtered = all;
-    
+    const load = async () => {
+      try {
+        const products = await getProducts();
+        setAllProducts(products);
+      } catch (_) {
+        setAllProducts([]);
+      }
+    };
+    load();
+  }, []);
+
+  useEffect(() => {
+    let filtered = allProducts;
     if (priceFilter) {
       if (priceFilter.min !== null) {
         filtered = filtered.filter(product => product.price >= priceFilter.min);
       }
-      
       if (priceFilter.max !== null) {
         filtered = filtered.filter(product => product.price <= priceFilter.max);
       }
     }
-    
     setFilteredProducts(filtered);
-  }, [priceFilter]);
+  }, [priceFilter, allProducts]);
 
   return (
     <div className="container py-4">

@@ -20,10 +20,25 @@ const AdminPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setProducts(getProducts());
+    const load = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data);
+      } catch (e) {
+        setError('Error al cargar productos');
+      }
+    };
+    load();
   }, []);
 
-  const refresh = () => setProducts(getProducts());
+  const refresh = async () => {
+    try {
+      const data = await getProducts();
+      setProducts(data);
+    } catch (e) {
+      setError('Error al cargar productos');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -53,7 +68,7 @@ const AdminPage = () => {
     setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     if (!form.name.trim()) { setError('El nombre es obligatorio'); return; }
@@ -62,21 +77,25 @@ const AdminPage = () => {
 
     try {
       if (editingId) {
-        updateProduct(editingId, form);
+        await updateProduct(editingId, form);
       } else {
-        addProduct(form);
+        await addProduct(form);
       }
-      refresh();
+      await refresh();
       resetForm();
     } catch (err) {
       setError('Error al guardar el producto');
     }
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!confirm('¿Eliminar este producto?')) return;
-    deleteProduct(id);
-    refresh();
+    try {
+      await deleteProduct(id);
+      await refresh();
+    } catch (_) {
+      setError('Error al eliminar el producto');
+    }
   };
 
   return (

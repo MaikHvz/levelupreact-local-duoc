@@ -1,49 +1,46 @@
-import productsData from '../data/productsData';
+const API_BASE = import.meta.env.VITE_PRODUCTS_API_URL || 'http://localhost:8082';
+const PRODUCTS_URL = `${API_BASE}/api/products`;
 
-const STORAGE_KEY = 'products';
-
-export const initProducts = () => {
-  try {
-    const existing = localStorage.getItem(STORAGE_KEY);
-    if (!existing) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
-    }
-  } catch (_) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(productsData));
-  }
+const jsonHeaders = {
+  'Content-Type': 'application/json',
 };
 
-export const getProducts = () => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch (_) {
-    return [];
-  }
+export const getProducts = async () => {
+  const res = await fetch(PRODUCTS_URL);
+  if (!res.ok) throw new Error('Error al obtener productos');
+  return res.json();
 };
 
-export const saveProducts = (products) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+export const getProductById = async (id) => {
+  const res = await fetch(`${PRODUCTS_URL}/${id}`);
+  if (!res.ok) throw new Error('Producto no encontrado');
+  return res.json();
 };
 
-export const addProduct = (product) => {
-  const products = getProducts();
-  const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-  const newProduct = { ...product, id: newId };
-  const updated = [...products, newProduct];
-  saveProducts(updated);
-  return newProduct;
+export const addProduct = async (product) => {
+  const res = await fetch(PRODUCTS_URL, {
+    method: 'POST',
+    headers: jsonHeaders,
+    body: JSON.stringify(product),
+  });
+  if (!res.ok) throw new Error('Error al crear producto');
+  return res.json();
 };
 
-export const updateProduct = (id, updates) => {
-  const products = getProducts();
-  const updated = products.map(p => (p.id === id ? { ...p, ...updates } : p));
-  saveProducts(updated);
-  return updated.find(p => p.id === id);
+export const updateProduct = async (id, updates) => {
+  const res = await fetch(`${PRODUCTS_URL}/${id}`, {
+    method: 'PUT',
+    headers: jsonHeaders,
+    body: JSON.stringify(updates),
+  });
+  if (!res.ok) throw new Error('Error al actualizar producto');
+  return res.json();
 };
 
-export const deleteProduct = (id) => {
-  const products = getProducts();
-  const updated = products.filter(p => p.id !== id);
-  saveProducts(updated);
+export const deleteProduct = async (id) => {
+  const res = await fetch(`${PRODUCTS_URL}/${id}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) throw new Error('Error al eliminar producto');
+  return true;
 };
