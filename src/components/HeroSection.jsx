@@ -54,7 +54,7 @@ export default function HeroSection() {
           <div className="hero-image">
             <div className="hero-image-container">
               <img
-                src="src\assets\gaming-setup-rgb-keyboard-mouse-headset.png"
+                src="/img/gaming-setup-rgb-keyboard-mouse-headset.png"
                 alt="Gaming Setup"
               />
             </div>

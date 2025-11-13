@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../styles/herosection.css";
 import { Link } from "react-router-dom";
 import { getProducts } from "../services/productsService";
+import { useCart } from "../contexts/CartContext";
 
 const FeaturedProducts = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const { addToCart } = useCart();
+  const [addingMap, setAddingMap] = useState({});
 
   useEffect(() => {
     const load = async () => {
@@ -42,7 +45,29 @@ const FeaturedProducts = () => {
               <span className="fw-normal">({product.reviews} reviews)</span>
             </span>
             <p className="fw-bold text-danger">${product.price}</p>
-            <button className="bg-danger text-white fw-bold card-button"> <i  className="bi bi-cart me-2"></i>Agregar al Carrito</button>
+            <button
+              className={`btn ${addingMap[product.id] ? "btn-success" : "btn-danger"} fw-bold card-button`}
+              onClick={() => {
+                setAddingMap(prev => ({ ...prev, [product.id]: true }));
+                addToCart(product);
+                setTimeout(() => {
+                  setAddingMap(prev => ({ ...prev, [product.id]: false }));
+                }, 500);
+              }}
+              disabled={!!addingMap[product.id]}
+            >
+              {addingMap[product.id] ? (
+                <>
+                  <i className="bi bi-check-lg me-2"></i>
+                  Agregado
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-cart-plus me-2"></i>
+                  Agregar
+                </>
+              )}
+            </button>
 
           </div>
         ))}

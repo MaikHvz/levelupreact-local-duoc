@@ -15,7 +15,7 @@ public class DataInitializer {
             if (repository.count() == 0) {
                 repository.save(Product.builder()
                         .name("Assassins Creed Shadows PS5")
-                        .image("src/assets/img/digitales-ps5-assassins-creed-shadows-ps5.jpg")
+                        .image("/img/digitales-ps5-assassins-creed-shadows-ps5.jpg")
                         .rating(4.7)
                         .reviews(324)
                         .price(23000.0)
@@ -23,7 +23,7 @@ public class DataInitializer {
                         .build());
                 repository.save(Product.builder()
                         .name("Metal Gear Solid Delta: Snake Eater PS5")
-                        .image("src/assets/img/QT04935.jpg")
+                        .image("/img/QT04935.jpg")
                         .rating(4.7)
                         .reviews(324)
                         .price(25000.0)
@@ -32,7 +32,7 @@ public class DataInitializer {
                 repository.save(Product.builder()
                         .name("Nintendo Switch 2")
                         .description("Consola Nintendo Switch con accesorios incluidos.")
-                        .image("src/assets/img/official-switch2-button-1737038723306.jpg")
+                        .image("/img/official-switch2-button-1737038723306.jpg")
                         .price(500990.0)
                         .rating(4.5)
                         .reviews(120)

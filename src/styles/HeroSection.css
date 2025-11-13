@@ -32,7 +32,7 @@ a{
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("src/assets/gaming-setup-dark-neon.png");
+  background-image: url("/img/gaming-setup-dark-neon.png");
   background-size: cover;
   background-position: center;
   opacity: 0.2;
