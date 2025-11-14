@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { login as apiLogin, register as apiRegister } from '../services/authService';
 
 // Crear el contexto de autenticación
 export const AuthContext = createContext();
@@ -13,25 +14,6 @@ export const AuthProvider = ({ children }) => {
 
   // Cargar usuario desde localStorage al iniciar
   useEffect(() => {
-    // Seed de usuario admin por defecto si no existe
-    const defaultAdmin = {
-      name: 'Admin',
-      email: 'admin@levelupgaming.cl',
-      password: 'admin123',
-      role: 'admin',
-    };
-
-    try {
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const hasAdmin = users.some(u => u.email === defaultAdmin.email);
-      if (!hasAdmin) {
-        localStorage.setItem('users', JSON.stringify([defaultAdmin, ...users]));
-      }
-    } catch (_) {
-      // Si hay error en parseo, inicializamos con admin
-      localStorage.setItem('users', JSON.stringify([defaultAdmin]));
-    }
-
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -39,29 +21,33 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Función para iniciar sesión
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+  // Función para iniciar sesión contra el backend
+  const login = async (email, password) => {
+    const responseUser = await apiLogin(email, password);
+    // No almacenamos la contraseña del backend en el estado del frontend
+    const sanitizedUser = {
+      id: responseUser.id,
+      name: responseUser.name,
+      email: responseUser.email,
+      role: (responseUser.role || 'USER').toString().toLowerCase(),
+    };
+    setUser(sanitizedUser);
+    localStorage.setItem('user', JSON.stringify(sanitizedUser));
+    return sanitizedUser;
   };
 
-  // Función para registrar usuario
-  const register = (userData) => {
-    // Guardar usuarios en localStorage
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    
-    // Verificar si el email ya existe
-    const userExists = users.some(user => user.email === userData.email);
-    if (userExists) {
-      throw new Error('El correo electrónico ya está registrado');
-    }
-    
-    // Agregar nuevo usuario
-    users.push({ ...userData, role: 'user' });
-    localStorage.setItem('users', JSON.stringify(users));
-    
-    // Iniciar sesión con el nuevo usuario
-    login(userData);
+  // Función para registrar usuario contra el backend
+  const register = async ({ name, email, password }) => {
+    const responseUser = await apiRegister(name, email, password);
+    const sanitizedUser = {
+      id: responseUser.id,
+      name: responseUser.name,
+      email: responseUser.email,
+      role: (responseUser.role || 'USER').toString().toLowerCase(),
+    };
+    setUser(sanitizedUser);
+    localStorage.setItem('user', JSON.stringify(sanitizedUser));
+    return sanitizedUser;
   };
 
   // Función para cerrar sesión
@@ -70,17 +56,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
   };
 
-  // Función para verificar credenciales
-  const verifyCredentials = (email, password) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find(user => user.email === email && user.password === password);
-    
-    if (!user) {
-      throw new Error('Credenciales incorrectas');
-    }
-    
-    return user;
-  };
+  // Ya no verificamos credenciales localmente; se realiza contra el backend
 
   // Valor del contexto
   const value = {
@@ -89,9 +65,8 @@ export const AuthProvider = ({ children }) => {
     login,
     register,
     logout,
-    verifyCredentials,
     isAuthenticated: !!user,
-    isAdmin: !!user && user.role === 'admin'
+    isAdmin: !!user && (user.role || '').toLowerCase() === 'admin'
   };
 
   return (

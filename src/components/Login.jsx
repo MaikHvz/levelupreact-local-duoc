@@ -10,21 +10,20 @@ const Login = () => {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { login, register, verifyCredentials } = useAuth();
+  const { login, register } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      const user = verifyCredentials(email, password);
-      login(user);
+      await login(email, password);
       navigate('/');
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
     if (!name.trim()) {
@@ -40,7 +39,7 @@ const Login = () => {
       return;
     }
     try {
-      register({ name, email, password });
+      await register({ name, email, password });
       navigate('/');
     } catch (err) {
       setError(err.message);
