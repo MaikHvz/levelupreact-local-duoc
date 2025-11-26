@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:8081';
+const API_BASE = 'https://levelup-auth-production.up.railway.app';
 const AUTH_URL = `${API_BASE}/api/auth`;
 
 const jsonHeaders = {
@@ -19,7 +19,6 @@ export const login = async (email, password) => {
 };
 
 export const register = async (name, email, password) => {
-  // El backend espera un campo role, lo establecemos por defecto como USER
   const res = await fetch(`${AUTH_URL}/register`, {
     method: 'POST',
     headers: jsonHeaders,
