@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_PRODUCTS_API_URL || 'http://localhost:8082';
+const API_BASE = 'https://levelup-productos-api-production.up.railway.app';
 const PRODUCTS_URL = `${API_BASE}/api/products`;
 
 const jsonHeaders = {
